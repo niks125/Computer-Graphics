@@ -1,0 +1,81 @@
+<html>
+<body>
+<p>РК №1. Синицын Никита Сергеевич ИУ8-52</p>
+</p>
+</p>
+<p>Задание 1. С помощью алгоритма Брезенхема построить отрезок прямой с коорд. А(100,0) и В(29,100)</p>
+	<canvas id='rk1' width=150 height=150>
+		<script>
+			var canvas=document.getElementById('rk1');
+			var ctx=canvas.getContext('2d');
+			function line(x1,x2,y1,y2){
+				var deltaX=Math.abs(x2-x1);
+				var deltaY=Math.abs(y2-y1);
+				var signX=x1<x2 ? 1: -1;
+				var signY=y1<y2 ? 1: -1;
+				var error=deltaX-deltaY;
+				ctx.fillRect(x2,y2,1,1);
+				while(x1!=x2||y1!=y2){
+					ctx.fillRect(x1,y1,1,1);
+					var error2=error*2;
+					if (error2 > -deltaY){
+						error-=deltaY;
+						x1+=signX;
+					}
+					if (error2<deltaX){
+					error+=deltaX;
+					y1+=signY;
+					}
+				}
+			}
+			line(100,29,0,100);
+		</script>
+	</canvas>
+<p>Задание 2. Построить отрезки прямых, которые получаются методом пересечения с горизонтальными.</p>
+	<canvas id='rk1_2' width='100' heigh='100'>
+
+			<script>
+
+				var canvas = document.getElementById('rk1_2');
+
+				var ctx=canvas.getContext('2d');
+
+				function h_line(ctx, x1, x2, y0) {
+
+					for (x=x1; x<x2; x++){
+	
+					ctx.fillRect(x, y0, 1, 1);
+					}
+
+				}
+
+				var y_array = [[1, 48, 49 ,50, 69, 80],
+						/*
+						[2, 19, 41, 55]
+
+						[2, 15, 20, 25, 45, 55]
+
+						[2, 13, 20, 25, 46, 55]
+
+						[2, 13, 20, 25, 47, 55]
+
+						[2, 11]
+*/
+						];
+
+				for (j=0; j<y_array.length; j++) {
+
+					for (i=0; i<y_array[j].length/2; i++) {
+
+						h_line(ctx, (y_array[j])[2*i],
+ 
+						(y_array[j])[2*i+1], 10+j);
+
+					}
+
+				}
+
+			</script>
+
+</body>
+</html>
